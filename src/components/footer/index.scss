@@ -1,0 +1,95 @@
+#footer {
+    margin-top: 50px;
+    padding-top: 50px;
+    background-color: #060e1f;
+}
+
+.footer__content {
+    width: 95%;
+    margin: 0 auto;
+    // margin-top: -170px;
+}
+
+.footer__content .footer_mid .row .footer__midItems:nth-child(3) {
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer__content .footer_mid .row .footer__midItems h4 {
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.footer__content .footer_mid .row .footer__midItems .footer_midItemsContent {
+    list-style: none;
+}
+
+.footer__content .footer_mid .row .footer__midItems .footer_midItemsContent li {
+    margin: 15px 0;
+}
+
+.footer__content .footer_mid .row .footer__midItems .footer_midItemsContent li a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 15px;
+    transition: all 1s;
+}
+
+.footer__content .footer_mid .row .footer__midItems .footer_midItemsContent li a i {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 13px;
+}
+
+.footer__content .footer_mid .row .footer__midItems .footer_midItemsContent li a:hover {
+    color: white;
+}
+
+.footer__content .footer_mid .row .footer__midItems p {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.footer__content .footer_mid .row .footer__midItems .midItems_socials a i {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-color: #091633;
+    color: white;
+    text-align: center;
+}
+
+.footer_bot {
+    padding: 20px 0;
+    background-color: black;
+    margin-top: 50px;
+}
+
+.footer_bot p {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6) !important;
+    margin: 0;
+}
+
+@media screen and (max-width:768px) {
+    .footer__content .footer__top .top__content {
+        /* padding: 0; */
+        margin: 0;
+    }
+
+    .footer__content .footer__top .top__content .row .top__left h1 {
+        font-size: 20px;
+    }
+
+    .footer__content .footer__top .top__content .row .top__left p {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .footer__content .footer__top .top__content .row .top__left h1 {
+        font-size: 10px;
+    }
+}

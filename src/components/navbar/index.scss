@@ -1,0 +1,32 @@
+.navbar-nav .nav-item {
+    margin-left: 50px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #007bff !important;
+    position: relative;
+    padding: 0;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-item .nav-link::after {
+    content: '';
+    position: absolute;
+    background: #020024;
+    background: -webkit-gradient(linear, left top, right top, from(#020024), color-stop(40%, #090979), color-stop(57%, #0657ad), to(#00d4ff));
+    background: linear-gradient(90deg, #020024 0%, #090979 40%, #0657ad 57%, #00d4ff 100%);
+    height: 3px;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.navbar-nav .nav-item .nav-link.active::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-item .nav-link:hover::after {
+    width: 100%;
+}
