@@ -2,7 +2,7 @@ import { request } from "../configs/axios";
 
 const fetchMoviesListApi = () => {
     return request({
-        url: '/QuanLyPhim/LayDanhSachPhim?maNhom=GP01',
+        url: '/QuanLyPhim/LayDanhSachPhim?maNhom=GP02',
         method: 'GET'
     });
 };

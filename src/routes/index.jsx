@@ -6,6 +6,7 @@ import ComingSoon from '../pages/coming-soon/coming-soon';
 import MovieDetail from '../pages/moivie-detail/moivie-detail';
 import Booking from '../pages/booking/booking';
 
+
 export default function Router() {
     const routing = useRoutes([
         {

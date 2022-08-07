@@ -7,14 +7,14 @@ export default function MovieDetail() {
         <div className="py-5">
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 px-5 bg-light">
                         <Detail />
                     </div>
-                    <div className="col-12 mt-5">
+                    <div className="col-12 mt-5 py-5 px-5 bg-light">
                         <ShowTimes />
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

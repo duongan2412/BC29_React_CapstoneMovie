@@ -11,7 +11,7 @@ export default function Login() {
                     <div className="modal-content">
                         {/* Modal Header */}
                         <div className="modal-header border-bottom-0">
-                            <img src="./images/Disney_cinema_logo.png" className="mx-auto" width={100} height={50} alt="..." />
+                            <img src={process.env.PUBLIC_URL + '/images/Disney_cinema_logo.png'} className="mx-auto" width={100} height={50} alt="..." />
                         </div>
                         {/* Modal body */}
                         <div className="modal-body pb-2">

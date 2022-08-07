@@ -1,20 +1,28 @@
 .ghe {
     width: 35px;
     height: 35px;
-    background: #ccc;
-    margin-right: 3px;
-    margin-bottom: px;
+    background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
+    border-radius: .5rem;
+    color: #FFFFFF;
+    cursor: pointer;
+    // border: 0;
+    // background: #ccc;
+    margin-right: 5px;
+    margin-bottom: 10px;
 
     &.gheVip {
-        background-color: red;
+        color: red;
+        font-weight: bold;
     }
 
     &.dangDat {
-        background-color: yellow;
+        color: yellow;
+        font-weight: bold;
     }
 
     &.daDat {
         cursor: not-allowed;
-        background-color: gray;
+        color: black;
+        font-weight: bold;
     }
 }

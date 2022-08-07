@@ -31,10 +31,12 @@
     font-weight: 600;
     margin: 0;
     color: #007bff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .ant-card-meta-title {
     font-size: 20px !important;
-    font-weight: 600;
+    font-weight: 800 !important;
     text-align: center !important;
 }
