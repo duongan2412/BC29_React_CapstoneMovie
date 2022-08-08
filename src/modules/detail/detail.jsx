@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom';
+import { useAsync } from '../../hooks/useAsync';
 import { fetchMoviesDetailApi } from '../../services/moviesList';
 import { formatDate } from '../../utils/common';
 import "./index.scss";
 
 export default function Detail() {
-    const [{ tenPhim, hinhAnh, moTa, ngayKhoiChieu, trailer }, setMovieDetail] = useState({});
     const params = useParams();
-    useEffect(() => {
-        fetchMovieDetail();
-    }, []);
 
-    const fetchMovieDetail = async () => {
-        const result = await fetchMoviesDetailApi(params.movieId);
-        setMovieDetail(result.data.content);
-    }
+    const { state: MovieDetail = [] } = useAsync({
+        dependencies: [],
+        services: () => fetchMoviesDetailApi(params.movieId)
+    })
+
+    const { tenPhim, hinhAnh, moTa, ngayKhoiChieu, trailer } = MovieDetail;
 
     return (
         <div className="row d-flex py-5 px-5 align-items-center">
             <div className="col-3">
-                <img className="w-100" src={hinhAnh} />
+                <img className="w-100" src={hinhAnh} alt="..." />
             </div>
             <div className="col-9">
                 <h4 className='font-weight-bold'>{tenPhim}</h4>

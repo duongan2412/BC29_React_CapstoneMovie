@@ -1,10 +1,11 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default function Login() {
     return (
         <div className="login">
             <i className="far fa-user" />
-            <a href="/" className="font-weight-light text-decoration-none login__text" data-toggle="modal" data-target="#loginModal">Login / Sign up</a>
+            <NavLink to="/login" className="font-weight-light text-decoration-none login__text" data-toggle="modal" data-target="#loginModal">Login / Sign up</NavLink>
             {/* The Modal */}
             <div className="modal fade" id="loginModal">
                 <div className="modal-dialog">

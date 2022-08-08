@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { fetchMoviesShowTimesApi } from '../../services/cinema';
 import "./index.scss"
 import { formatDate } from '../../utils/common';
+import { useAsync } from '../../hooks/useAsync';
 
 export default function ShowTimes() {
-    const [showTimes, setShowTimes] = useState([]);
-    const params = useParams();
-    useEffect(() => {
-        fetchMovieShowTimes();
-    }, []);
 
-    const fetchMovieShowTimes = async () => {
-        const result = await fetchMoviesShowTimesApi(params.movieId);
-        setShowTimes(result.data.content);
-    };
+    const params = useParams();
+
+    const { state: showTimes = [] } = useAsync({
+        dependencies: [],
+        services: () => fetchMoviesShowTimesApi(params.movieId)
+    })
 
     const renderContent = () => {
         return showTimes?.heThongRapChieu?.map((ele, idx) => {
@@ -38,7 +36,7 @@ export default function ShowTimes() {
                                                     <div className="col-1">
                                                         <img
                                                             className="img-fluid rounded"
-                                                            src={ele.hinhAnh}
+                                                            src={ele.hinhAnh} alt="..."
                                                         />
                                                     </div>
                                                     <div className="col-11 pl-0">

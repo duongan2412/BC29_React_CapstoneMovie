@@ -1,24 +1,20 @@
 import { Col, Row } from 'antd';
 import { Card } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchMoviesListApi } from '../../services/moviesList';
-import moment from "moment";
+import { useAsync } from '../../hooks/useAsync';
+import { formatDate } from '../../utils/common';
 import "./index.scss";
 
 export default function MoviesList() {
     const navigate = useNavigate();
-    const [moviesList, setMoviesList] = useState([]);
     const { Meta } = Card;
-    useEffect(() => {
-        fetchMoviesList();
-    }, []);
 
-    const fetchMoviesList = async () => {
-        const result = await fetchMoviesListApi();
-        setMoviesList(result.data.content)
-    };
-
+    const { state: moviesList = [] } = useAsync({
+        dependencies: [],
+        services: () => fetchMoviesListApi()
+    })
 
     const renderMoviesList = () => {
         return moviesList.map((ele) => {
@@ -32,7 +28,7 @@ export default function MoviesList() {
                         }}
                         cover={<img alt="..." src={ele.hinhAnh} style={{ height: 350, objectFit: 'cover' }} />}
                     >
-                        <p className='releaseDate'>RELEASE DATE: {moment(ele.ngayKhoiChieu).format('LLL')}</p>
+                        <p className='releaseDate'>RELEASE DATE: {formatDate(ele.ngayKhoiChieu, 'LL')}</p>
                         <Meta title={ele.tenPhim} />
                     </Card>
                 </Col>

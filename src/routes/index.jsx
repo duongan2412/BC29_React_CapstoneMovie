@@ -5,6 +5,9 @@ import Home from '../pages/home/home';
 import ComingSoon from '../pages/coming-soon/coming-soon';
 import MovieDetail from '../pages/moivie-detail/moivie-detail';
 import Booking from '../pages/booking/booking';
+import AuthGuard from '../guards/auth.guards';
+import NoAuthGuard from '../guards/no-auth.guards';
+import Login from '../pages/login/login';
 
 
 export default function Router() {
@@ -44,6 +47,26 @@ export default function Router() {
                 {
                     path: "/booking/:maLichChieu",
                     element: <Booking />
+                },
+                // {
+                //     path: "/",
+                //     element: <AuthGuard />,
+                //     children: [
+                //         {
+                //             path: "/booking/:maLichChieu",
+                //             element: <Booking />
+                //         }
+                //     ]
+                // },
+                {
+                    path: "/",
+                    element: <NoAuthGuard />,
+                    children: [
+                        {
+                            path: "/login",
+                            element: <Login />
+                        }
+                    ]
                 }
             ]
         }

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAsync } from '../../hooks/useAsync';
 import Chair from '../../modules/chair/chair';
 import { bookingTicketApi, fetchRoomListApi } from '../../services/booking';
 import { formatDate } from '../../utils/common';
@@ -7,22 +8,17 @@ import "./index.scss"
 
 export default function Booking() {
     const [dsGhe, setDsGhe] = useState([]);
-    const [roomList, setRoomList] = useState();
     const params = useParams();
     const navigate = useNavigate();
-    useEffect(() => {
-        fetchRoomList()
-    }, []);
 
-    const fetchRoomList = async () => {
-        const result = await fetchRoomListApi(params.maLichChieu);
-        setRoomList(result.data.content)
-    }
+    const { state: roomList = [] } = useAsync({
+        dependencies: [],
+        services: () => fetchRoomListApi(params.maLichChieu)
+    })
 
     const handleSelect = (selectedChair) => {
         const data = [...dsGhe]
         const idx = data.findIndex(ele => ele.tenGhe === selectedChair.tenGhe)
-        // console.log(selectedChair);
         if (idx !== -1) {
             data.splice(idx, 1)
         } else {
@@ -30,32 +26,32 @@ export default function Booking() {
         }
         setDsGhe(data)
     }
+
     const handleBookingTicket = async () => {
-        console.log(dsGhe);
         const dsVe = dsGhe.map((ele) => {
             return {
                 maGhe: ele.maGhe,
                 giaVe: ele.giaVe
             }
         })
-        // console.log(dsVe);
+
         const submitData = {
             maLichChieu: params.maLichChieu,
             danhSachVe: dsVe
         };
+
         await bookingTicketApi(submitData);
         alert("DAT VE THANH CONG");
         navigate("/")
     }
 
-    // console.log(roomList)
     return (
-        roomList ? (
-            <div className='row w-75 mx-auto py-5'>
+        roomList.thongTinPhim && (
+            <div className='row w-75 mx-auto py-5' >
                 <div className="col-12">
                     <div className="row align-items-center bg-light">
                         <div className="col-3 py-5 px-5">
-                            <img className="w-100 img-fluid" src={roomList.thongTinPhim.hinhAnh} />
+                            <img className="w-100 img-fluid" src={roomList.thongTinPhim.hinhAnh} alt="..." />
                         </div>
                         <div className="col-9 px-3 font-weight-bold">
                             <h4 style={{ color: '#007bff' }}>{roomList.thongTinPhim.tenPhim}</h4>
@@ -99,8 +95,5 @@ export default function Booking() {
                 </div>
             </div >
         )
-            : (
-                'Loading....'
-            )
     )
 }
