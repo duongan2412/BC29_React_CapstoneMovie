@@ -1,4 +1,4 @@
-import { SET_USER_INFO } from "../type/user.type"
+import { SET_USER_INFO } from "../types/user.type";
 
 const setUserInfoAction = (data) => {
     return {

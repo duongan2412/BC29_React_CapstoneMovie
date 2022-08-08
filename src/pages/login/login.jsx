@@ -1,39 +1,93 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { Button, Checkbox, Form, Input } from 'antd';
+import "./index.scss";
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { loginApi } from '../../services/user';
+import { USER_INFO_KEY } from '../../constants/common';
+import { setUserInfoAction } from '../../store/actions/user.action';
 
 export default function Login() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const onFinish = async (values) => {
+        const result = await loginApi(values);
+        localStorage.setItem(USER_INFO_KEY, JSON.stringify(result.data.content));
+        dispatch(setUserInfoAction(result.data.content));
+        navigate("/");
+        console.log('Success:', values);
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+
     return (
-        <div className="login">
-            <i className="far fa-user" />
-            <NavLink to="/login" className="font-weight-light text-decoration-none login__text" data-toggle="modal" data-target="#loginModal">Login / Sign up</NavLink>
-            {/* The Modal */}
-            <div className="modal fade" id="loginModal">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        {/* Modal Header */}
-                        <div className="modal-header border-bottom-0">
-                            <img src={process.env.PUBLIC_URL + '/images/Disney_cinema_logo.png'} className="mx-auto" width={100} height={50} alt="..." />
-                        </div>
-                        {/* Modal body */}
-                        <div className="modal-body pb-2">
-                            <div className="form-group">
-                                <label>User name</label>
-                                <input type="text" name="username" className="form-control" aria-describedby="helpId" />
-                                {/* <p className="userNameError mt-1 mb-0" ></p> */}
-                                <label className="pt-2">Password</label>
-                                <input type="text" name="password" className="form-control" aria-describedby="helpId" />
-                                {/* <p className="passwordError mt-1 mb-0"></p> */}
-                                <button type="button" className="btn btn-success w-50 mt-3 text-center">LOGIN</button>
-                            </div>
-                        </div>
-                        {/* Modal footer */}
-                        <div className="modal-footer border-top-0 pt-0">
-                            <span>Don't have an account?</span>
-                            <button type="button" className="btn btn-outline-success">SIGN UP</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div className='loginPages'>
+            <Form
+                name="basic"
+                labelCol={{
+                    span: 8,
+                }}
+                wrapperCol={{
+                    span: 16,
+                }}
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+            >
+                <Form.Item
+                    label="Username"
+                    name="taiKhoan"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your username!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="Password"
+                    name="matKhau"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your password!',
+                        },
+                    ]}
+                >
+                    <Input.Password />
+                </Form.Item>
+
+                <Form.Item
+                    // name="remember"
+                    valuePropName="checked"
+                    wrapperCol={{
+                        offset: 8,
+                        span: 16,
+                    }}
+                >
+                    <Checkbox>Remember me</Checkbox>
+                </Form.Item>
+
+                <Form.Item
+                    wrapperCol={{
+                        offset: 8,
+                        span: 16,
+                    }}
+                >
+                    <Button type="primary" htmlType="submit">
+                        Submit
+                    </Button>
+                </Form.Item>
+            </Form>
         </div>
-    )
+    );
 }

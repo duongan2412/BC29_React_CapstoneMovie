@@ -45,19 +45,15 @@ export default function Router() {
                     element: <MovieDetail />
                 },
                 {
-                    path: "/booking/:maLichChieu",
-                    element: <Booking />
+                    path: "/",
+                    element: <AuthGuard />,
+                    children: [
+                        {
+                            path: "/booking/:maLichChieu",
+                            element: <Booking />
+                        }
+                    ]
                 },
-                // {
-                //     path: "/",
-                //     element: <AuthGuard />,
-                //     children: [
-                //         {
-                //             path: "/booking/:maLichChieu",
-                //             element: <Booking />
-                //         }
-                //     ]
-                // },
                 {
                     path: "/",
                     element: <NoAuthGuard />,
