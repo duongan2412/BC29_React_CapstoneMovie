@@ -4,6 +4,7 @@ import { useAsync } from '../../hooks/useAsync';
 import Chair from '../../modules/chair/chair';
 import { bookingTicketApi, fetchRoomListApi } from '../../services/booking';
 import { formatDate } from '../../utils/common';
+import styled from 'styled-components';
 import "./index.scss"
 
 export default function Booking() {
@@ -61,16 +62,19 @@ export default function Booking() {
                     </div>
                 </div>
                 <div className="col-9 mt-5 px-5">
-                    {
-                        roomList.danhSachGhe.map((ele, idx) => {
-                            return (
-                                <React.Fragment key={ele.tenGhe}>
-                                    <Chair handleSelect={handleSelect} item={ele}></Chair>
-                                    {(idx + 1) % 16 === 0 && <br />}
-                                </React.Fragment>
-                            );
-                        })
-                    }
+                    <SreenStyted className='container'>SCREEN</SreenStyted>
+                    <div className='chair_area'>
+                        {
+                            roomList.danhSachGhe.map((ele, idx) => {
+                                return (
+                                    <React.Fragment key={ele.tenGhe}>
+                                        <Chair handleSelect={handleSelect} item={ele}></Chair>
+                                        {(idx + 1) % 16 === 0 && <br />}
+                                    </React.Fragment>
+                                );
+                            })
+                        }
+                    </div>
                 </div>
                 <div className="col-3 mt-5 pt-5 d-flex flex-column text-center">
                     <div className="statusChair d-flex justify-content-around">
@@ -97,3 +101,20 @@ export default function Booking() {
         )
     )
 }
+
+
+const SreenStyted = styled.div`
+    width: 100%;
+    text-align: center;
+    height: 70px;
+    background-color: darkgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px
+}
+`

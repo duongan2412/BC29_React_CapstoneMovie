@@ -1,6 +1,8 @@
 .loginPages {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 100px 50px 0 0;
+}
+
+.loginInput {
+    border-right: solid 1px #ccc;
+    padding-right: 50px;
 }

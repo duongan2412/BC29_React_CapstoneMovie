@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useAsync } from '../../hooks/useAsync';
-import { fetchMoviesDetailApi } from '../../services/moviesList';
+import { fetchMoviesDetailApi } from '../../services/movies';
 import { formatDate } from '../../utils/common';
 import "./index.scss";
 
@@ -17,10 +17,10 @@ export default function Detail() {
 
     return (
         <div className="row d-flex py-5 px-5 align-items-center">
-            <div className="col-3">
+            <div className="col-md-3 col-12">
                 <img className="w-100" src={hinhAnh} alt="..." />
             </div>
-            <div className="col-9">
+            <div className="col-md-9 col-12">
                 <h4 className='font-weight-bold'>{tenPhim}</h4>
                 <p>{moTa}</p>
                 <p className='font-weight-bold'>Release: {formatDate(ngayKhoiChieu)}</p>

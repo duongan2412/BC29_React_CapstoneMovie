@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react"
 import { LoadingContext } from "../contexts/loading.context";
 
-export const useAsync = ({ dependencies = [], services }) => {
-    const [loadingState, setLoadingState] = useContext(LoadingContext);
+export const useAsync = ({ dependencies = [], services, condition = true }) => {
+    const [_, setLoadingState] = useContext(LoadingContext);
     const [state, setState] = useState();
 
     useEffect(() => {
-        fetchData();
+        if (condition) {
+            fetchData();
+        }
     }, dependencies)
 
     const fetchData = async () => {
@@ -17,6 +19,6 @@ export const useAsync = ({ dependencies = [], services }) => {
     };
 
     return {
-        state
+        state,
     };
 }

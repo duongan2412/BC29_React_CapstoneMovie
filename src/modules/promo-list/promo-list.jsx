@@ -9,7 +9,7 @@ export default function PromoList() {
         <div className='container'>
             <h1 className='pt-4 mb-0 moviesTitle'>PROMOTIONS</h1>
             <Row >
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -19,7 +19,7 @@ export default function PromoList() {
                         <Meta title='Sun Bundle Deal' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -29,7 +29,7 @@ export default function PromoList() {
                         <Meta title='Movie Gift Vouchers' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -39,7 +39,7 @@ export default function PromoList() {
                         <Meta title='Purchase Premium Seat Tickets & Get $3 off Regular Popcorn Combo' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -49,7 +49,7 @@ export default function PromoList() {
                         <Meta title='Wednesday and Sunday $2.50 off tickets promo' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -59,7 +59,7 @@ export default function PromoList() {
                         <Meta title='HSBC/POSB Movie Privilege' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -69,7 +69,7 @@ export default function PromoList() {
                         <Meta title='HSBC Movie Privilege' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{
@@ -79,7 +79,7 @@ export default function PromoList() {
                         <Meta title='Student Offer' />
                     </Card>
                 </Col>
-                <Col md={6} sm={4} style={{ marginTop: '30px' }}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }}>
                     <Card
                         hoverable
                         style={{

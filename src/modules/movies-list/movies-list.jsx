@@ -2,7 +2,7 @@ import { Col, Row } from 'antd';
 import { Card } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchMoviesListApi } from '../../services/moviesList';
+import { fetchMoviesListApi } from '../../services/movies';
 import { useAsync } from '../../hooks/useAsync';
 import { formatDate } from '../../utils/common';
 import "./index.scss";
@@ -19,7 +19,7 @@ export default function MoviesList() {
     const renderMoviesList = () => {
         return moviesList.map((ele) => {
             return (
-                <Col md={6} sm={4} style={{ marginTop: '30px' }} key={ele.maPhim}>
+                <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }} key={ele.maPhim}>
                     <Card
                         onClick={() => navigate(`/movie/${ele.maPhim}`)}
                         hoverable

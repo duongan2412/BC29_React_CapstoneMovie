@@ -31,15 +31,15 @@ export default function ShowTimes() {
                                 ele.cumRapChieu.map((ele) => {
                                     return (
                                         <div key={ele.maCumRap} className="row mb-5">
-                                            <div className="col-12 bg-light py-3 px-3">
+                                            <div className="col-12 bg-light py-3 px-3 text-center">
                                                 <div className="row">
-                                                    <div className="col-1">
+                                                    <div className="col-md-3 col-12">
                                                         <img
                                                             className="img-fluid rounded"
                                                             src={ele.hinhAnh} alt="..."
                                                         />
                                                     </div>
-                                                    <div className="col-11 pl-0">
+                                                    <div className="col-md-9 col-12 pl-0">
                                                         <h5 className='font-weight-bold'>{ele.tenCumRap}</h5>
                                                         <span className="text-muted">
                                                             {ele.diaChi}
@@ -52,7 +52,7 @@ export default function ShowTimes() {
                                                     {
                                                         ele.lichChieuPhim.map((ele) => {
                                                             return (
-                                                                <div key={ele.maLichChieu} className="col-3">
+                                                                <div key={ele.maLichChieu} className="col-md-3 col-12">
                                                                     <p className='mt-3 font-weight-bold'>{formatDate(ele.ngayChieuGioChieu, 'LL')}</p>
                                                                     <Link to={`/booking/${ele.maLichChieu}`}>
                                                                         <button className='btn btn-outline-primary font-weight-bold'>{formatDate(ele.ngayChieuGioChieu, 'LT')}</button>
