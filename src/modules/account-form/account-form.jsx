@@ -1,30 +1,25 @@
 import { Button, Form, Input, Row, Col, notification, Select } from 'antd';
 import { GROUP_ID } from '../../constants/common';
-import { MaLoaiNguoiDung } from 'enums/common';
-import React, { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { fetchAccountInfoApi, updateUserApi } from 'services/user';
+import { useAsync } from 'hooks/useAsync';
 
 export default function AccountForm() {
     const navigate = useNavigate();
-    const params = useParams();
     const [form] = Form.useForm();
-    const [account, setAccount] = useState({})
 
-    const fetchAccountInfo = async () => {
-        const result = await fetchAccountInfoApi();
-        console.log(result.data.content)
-        setAccount(result.data.content);
+
+    const { state: account } = useAsync({
+        dependencies: [],
+        services: () => fetchAccountInfoApi()
+    })
+
+    if (account !== undefined) {
+        form.setFieldsValue(account)
     }
 
-    useEffect(() => {
-        fetchAccountInfo();
-        console.log(account)
-    }, [])
-
     const onFinish = async (values) => {
-        console.log(account)
         values = {
             ...values,
             maNhom: GROUP_ID,

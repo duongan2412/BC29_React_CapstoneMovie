@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { fetchAccountInfoApi } from 'services/user';
 import { useAsync } from 'hooks/useAsync';
+import BookingHistory from 'pages/booking-history/booking-history';
 
 export default function Account() {
     const navigate = useNavigate();
@@ -50,7 +51,7 @@ export default function Account() {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a onClick={() => navigate(`/account/${record.account}/edit`)}>Edit</a>
+                    <a onClick={() => navigate(`/account/edit`)}>Edit</a>
                 </Space>
             ),
         },
@@ -84,8 +85,7 @@ export default function Account() {
                     <Table columns={columns} dataSource={data} pagination={false} />;
                 </div>
                 <div id="menu2" className="container tab-pane fade"><br />
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <BookingHistory account={account} />
                 </div>
             </div>
         </div>

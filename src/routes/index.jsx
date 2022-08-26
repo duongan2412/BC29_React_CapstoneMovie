@@ -68,7 +68,7 @@ export default function Router() {
                             element: <Account />
                         },
                         {
-                            path: "/account/:accId/edit",
+                            path: "/account/edit",
                             element: <AccountForm />
                         },
                     ]
