@@ -1,4 +1,4 @@
-import { Space, Table } from 'antd';
+import { Input, Space, Table } from 'antd';
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,10 +8,23 @@ import { formatDate } from '../../utils/common';
 export default function ShowtimeTable() {
     const navigate = useNavigate();
     const [movieList, setMovieList] = useState([]);
+    const [movieListF, setMovieListF] = useState([]);
+    const [keyword, setKeyWord] = useState()
+
+    const handleChange = (e) => {
+        setKeyWord(e.target.value)
+    }
 
     useEffect(() => {
         fetchMovieList();
     }, []);
+
+    useEffect(() => {
+        const data = movieList.filter(ele => {
+            return ele.tenPhim.toLowerCase().trim().indexOf(keyword?.toLowerCase().trim()) !== - 1
+        })
+        setMovieListF(data)
+    }, [keyword])
 
     const fetchMovieList = async () => {
         const result = await fetchMoviesListApi();
@@ -55,7 +68,10 @@ export default function ShowtimeTable() {
 
     return (
         <>
-            <Table rowKey='maPhim' columns={columns} dataSource={movieList} />
+            <div className='text-left mb-2'>
+                <Input style={{ width: 200 }} name='keyword' placeholder="Search by Movie" onChange={handleChange} />
+            </div>
+            <Table rowKey='maPhim' columns={columns} dataSource={keyword ? movieListF : movieList} />
         </>
     )
 }

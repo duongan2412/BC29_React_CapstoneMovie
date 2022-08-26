@@ -1,6 +1,6 @@
-import { Col, Row } from 'antd';
+import { Col, Input, Row } from 'antd';
 import { Card } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchMoviesListApi } from '../../services/movies';
 import { useAsync } from '../../hooks/useAsync';
@@ -16,8 +16,22 @@ export default function MoviesList() {
         services: () => fetchMoviesListApi()
     })
 
+    const [movieListF, setMovieListF] = useState([]);
+    const [keyword, setKeyWord] = useState()
+
+    const handleChange = (e) => {
+        setKeyWord(e.target.value)
+    }
+
+    useEffect(() => {
+        const data = moviesList.filter(ele => {
+            return ele.tenPhim.toLowerCase().trim().indexOf(keyword?.toLowerCase().trim()) !== - 1
+        })
+        setMovieListF(data)
+    }, [keyword])
+
     const renderMoviesList = () => {
-        return moviesList.map((ele) => {
+        return (keyword ? movieListF : moviesList).map((ele) => {
             return (
                 <Col lg={6} md={12} sx={24} style={{ marginTop: '30px' }} key={ele.maPhim}>
                     <Card
@@ -37,8 +51,15 @@ export default function MoviesList() {
     }
 
     return (
-        <div className='container'>
-            <h1 className='pt-4 mb-0 moviesTitle'>MOVIES</h1>
+        <div className='container' >
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div>
+                    <h1 className='pt-4 mb-0 moviesTitle'>MOVIES</h1>
+                </div>
+                <div className='ml-auto pt-4'>
+                    <Input style={{ width: 200 }} name='keyword' placeholder="Search Movie" onChange={handleChange} />
+                </div>
+            </div>
             <Row >
                 {renderMoviesList()}
             </Row>

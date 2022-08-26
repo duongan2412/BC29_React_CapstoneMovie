@@ -54,4 +54,11 @@ const updateUserApi = (data) => {
     })
 }
 
-export { loginApi, signUpApi, fetchUserListApi, addUserApi, deteleUserApi, fetchUserDetailApi, updateUserApi }
+const fetchAccountInfoApi = () => {
+    return request({
+        url: '/QuanLyNguoiDung/ThongTinTaiKhoan',
+        method: 'POST'
+    })
+}
+
+export { loginApi, signUpApi, fetchUserListApi, addUserApi, deteleUserApi, fetchUserDetailApi, updateUserApi, fetchAccountInfoApi }

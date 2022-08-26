@@ -26,7 +26,7 @@ export default function Navbar() {
                         <NavLink className="nav-link" to="/all-new">NEWS &amp; ACTIVITIES</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/privacy-policy">PRIVACY POLICY</NavLink>
+                        <NavLink className="nav-link" to="/account">ACCOUNT</NavLink>
                     </li>
                 </ul>
             </div>

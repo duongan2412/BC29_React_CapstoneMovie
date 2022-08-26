@@ -1,0 +1,1 @@
+export const SET_BOOKING_INFO = 'SET_BOOKING_INFO';

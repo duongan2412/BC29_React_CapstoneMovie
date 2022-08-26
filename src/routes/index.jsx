@@ -22,7 +22,8 @@ import PromoList from 'modules/promo-list/promo-list';
 import Cinemas from 'pages/cinemas/cinemas';
 import ShowtimeManagement from 'pages/showtime-management/showtime-management';
 import ShowtimeForm from 'modules/showtime-form/showtime-form';
-
+import Account from 'pages/account/account';
+import AccountForm from 'modules/account-form/account-form';
 
 export default function Router() {
     const routing = useRoutes([
@@ -51,10 +52,6 @@ export default function Router() {
                     element: <ComingSoon />
                 },
                 {
-                    path: "/privacy-policy",
-                    element: <ComingSoon />
-                },
-                {
                     path: "/movie/:movieId",
                     element: <MovieDetail />
                 },
@@ -65,7 +62,15 @@ export default function Router() {
                         {
                             path: "/booking/:maLichChieu",
                             element: <Booking />
-                        }
+                        },
+                        {
+                            path: "/account",
+                            element: <Account />
+                        },
+                        {
+                            path: "/account/:accId/edit",
+                            element: <AccountForm />
+                        },
                     ]
                 },
                 {
