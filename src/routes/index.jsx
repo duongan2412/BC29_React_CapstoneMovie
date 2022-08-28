@@ -66,11 +66,8 @@ export default function Router() {
                         {
                             path: "/account",
                             element: <Account />
-                        },
-                        {
-                            path: "/account/edit",
-                            element: <AccountForm />
-                        },
+                        }
+
                     ]
                 },
                 {
@@ -84,7 +81,7 @@ export default function Router() {
                         {
                             path: "/signup",
                             element: <SignUp />
-                        }
+                        },
                     ]
                 }
             ]

@@ -1,17 +1,31 @@
-import { USER_INFO_KEY } from 'constants/common'
-import { Space, Table, Tag } from 'antd';
-import React, { useEffect, useState } from 'react'
+import { Space, Table } from 'antd';
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { fetchAccountInfoApi } from 'services/user';
-import { useAsync } from 'hooks/useAsync';
 import BookingHistory from 'pages/booking-history/booking-history';
+import { LoadingContext } from "contexts/loading.context";
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { USER_INFO_KEY } from 'constants/common';
+
 
 export default function Account() {
     const navigate = useNavigate();
-    const { state: account = [] } = useAsync({
-        dependencies: [],
-        services: () => fetchAccountInfoApi()
-    })
+    const [_, setLoadingState] = useContext(LoadingContext);
+
+    const [account, setAccount] = useState([]);
+    const fetchAccountInfo = async () => {
+        setLoadingState({ isLoading: true });
+        const result = await fetchAccountInfoApi();
+        setLoadingState({ isLoading: false });
+        setAccount(result.data.content);
+    }
+    let userInfo = localStorage.getItem(USER_INFO_KEY);
+    useEffect(() => {
+        if (userInfo) {
+            fetchAccountInfo();
+        }
+    }, [userInfo])
 
     const columns = [
         {
